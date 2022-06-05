@@ -5,6 +5,7 @@ module.exports = {
     const client = message.client
     if (message.author.bot || !message.guild) return;
     if (!message.mentions.has(message.client.user)) return;
+    if (!message.content.includes(client.user.id)) return;
     if(!message.member.voice.channel) return message.reply("Join a VC First");
     try {
       client.discordTogether.createTogetherCode(message.member.voice.channel.id, 'youtube').then(async invite => {
