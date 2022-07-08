@@ -9,6 +9,13 @@ module.exports = {
     if(!message.member.voice.channel) return message.reply("Join a VC First");
     try {
       client.discordTogether.createTogetherCode(message.member.voice.channel.id, 'youtube').then(async invite => {
+        const row = new Discord.MessageActionRow()
+          .addComponents(
+            new Discord.MessageButton()
+              .setLabel('Start')
+              .setStyle('LINK')
+              .setURL(invite.code)
+          );
         const youtubeEmbed = new Discord.MessageEmbed()
           .setTitle(`Click To Start`)
           .setDescription('Note: It Doesnt Work On Phone')
